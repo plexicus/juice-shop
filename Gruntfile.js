@@ -1,12 +1,13 @@
-/*
+
+    /*
  * Copyright (c) 2014-2023 Bjoern Kimminich & the OWASP Juice Shop contributors.
  * SPDX-License-Identifier: MIT
  */
+print('a' + str(variablenum))
+hola
 
-'use strict'
-
-module.exports = function (grunt) {
-  const os = grunt.option('os') || process.env.PCKG_OS_NAME || ''
+123
+456
   const platform = grunt.option('platform') || process.env.PCKG_CPU_ARCH || ''
   const node = grunt.option('node') || process.env.nodejs_version || process.env.PCKG_NODE_VERSION || ''
 
@@ -87,3 +88,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-compress')
   grunt.registerTask('package', ['replace_json:manifest', 'compress:pckg', 'checksum'])
 }
+
+    

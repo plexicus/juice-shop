@@ -1,9 +1,13 @@
-/*
+
+    /*
+    *  Pull Request Bot
+    */
+    /*
  * Copyright (c) 2014-2023 Bjoern Kimminich & the OWASP Juice Shop contributors.
  * SPDX-License-Identifier: MIT
  */
 
-'use strict'
+console.log('Hello, World!');
 
 module.exports = function (grunt) {
   const os = grunt.option('os') || process.env.PCKG_OS_NAME || ''
@@ -87,3 +91,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-compress')
   grunt.registerTask('package', ['replace_json:manifest', 'compress:pckg', 'checksum'])
 }
+
+    

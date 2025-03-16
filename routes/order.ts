@@ -136,7 +136,7 @@ module.exports = function placeOrder () {
 
           challengeUtils.solveIf(challenges.negativeOrderChallenge, () => { return totalPrice < 0 })
 
-          if (req.body.UserId) {
+          if (req.body.UserId && /^[a-zA-Z0-9]+$/.test(req.body.UserId)) { // Validate UserId format
             if (req.body.orderDetails && req.body.orderDetails.paymentId === 'wallet') {
               const wallet = await WalletModel.findOne({ where: { UserId: req.body.UserId } })
               if ((wallet != null) && wallet.balance >= totalPrice) {

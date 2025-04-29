@@ -9,13 +9,17 @@ import logger from '../lib/logger'
 
 import { UserModel } from '../models/user'
 import * as utils from '../lib/utils'
-const security = require('../lib/insecurity')
-const request = require('request')
+const allowedImageDomains = ['plexicus.com'] // Trusted domains for profile image URLs
 
 module.exports = function profileImageUrlUpload () {
   return (req: Request, res: Response, next: NextFunction) => {
     if (req.body.imageUrl !== undefined) {
       const url = req.body.imageUrl
+      const hostname = new URL(url).hostname
+
+      if (!allowedImageDomains.includes(hostname)) {
+        return res.status(400).send('Invalid image URL')
+      }
       if (url.match(/(.)*solve\/challenges\/server-side(.)*/) !== null) req.app.locals.abused_ssrf_bug = true
       const loggedInUser = security.authenticatedUsers.get(req.cookies.token)
       if (loggedInUser) {

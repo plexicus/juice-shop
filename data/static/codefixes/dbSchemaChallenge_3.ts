@@ -7,7 +7,11 @@ module.exports = function searchProducts () {
     if (criteria.match(injectionChars)) {
       res.status(400).send()
       return
-    }
+    models.sequelize.query(
+      `SELECT * FROM Products WHERE ((name LIKE :criteria OR description LIKE :criteria) AND deletedAt IS NULL) ORDER BY name`,
+      { replacements: { criteria: `%${criteria}%` } }
+    )
+    // deloitte
     models.sequelize.query(`SELECT * FROM Products WHERE ((name LIKE '%${criteria}%' OR description LIKE '%${criteria}%') AND deletedAt IS NULL) ORDER BY name`)
       .then(([products]: any) => {
         const dataString = JSON.stringify(products)

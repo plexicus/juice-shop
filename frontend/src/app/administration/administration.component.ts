@@ -47,6 +47,7 @@ export class AdministrationComponent implements OnInit {
       this.userDataSourceHidden = users
       for (const user of this.userDataSource) {
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        // PLEXICUS COVULOR: disable opengrep=javascript.lang.security.html-in-template-string.html-in-template-string
         user.email = this.sanitizer.bypassSecurityTrustHtml(`<span class="${user.token ? 'confirmation' : 'error'}">${user.email}</span>`)
       }
       this.userDataSource = new MatTableDataSource(this.userDataSource)

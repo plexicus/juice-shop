@@ -34,7 +34,7 @@ describe('/dataerasure', () => {
       headers: jsonHeader,
       body: {
         email: 'bjoern.kimminich@gmail.com',
-        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+        password: process.env.TEST_NPM_PASSWORD || 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
       }
     })
       .expect('status', 200)
@@ -61,7 +61,7 @@ describe('/dataerasure', () => {
       headers: jsonHeader,
       body: {
         email: 'bjoern.kimminich@gmail.com',
-        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+        password: process.env.TEST_NPM_PASSWORD || 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
       }
     })
       .expect('status', 200)
@@ -77,7 +77,7 @@ describe('/dataerasure', () => {
               headers: jsonHeader,
               body: {
                 email: 'bjoern.kimminich@gmail.com',
-                password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+                password: process.env.TEST_NPM_PASSWORD || 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
               }
             })
               .expect('status', 200)
@@ -96,7 +96,7 @@ describe('/dataerasure', () => {
       headers: jsonHeader,
       body: {
         email: 'bjoern.kimminich@gmail.com',
-        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+        password: process.env.TEST_NPM_PASSWORD || 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
       }
     })
       .expect('status', 200)
@@ -116,7 +116,7 @@ describe('/dataerasure', () => {
       headers: jsonHeader,
       body: {
         email: 'bjoern.kimminich@gmail.com',
-        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+        password: process.env.TEST_NPM_PASSWORD || 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
       }
     })
       .expect('status', 200)
@@ -137,11 +137,11 @@ describe('/dataerasure', () => {
       headers: jsonHeader,
       body: {
         email: 'bjoern.kimminich@gmail.com',
-        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+        password: process.env.TEST_NPM_PASSWORD || 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
       }
     })
       .expect('status', 200)
-      .then(({ json: jsonLogin }) => {
+
         return frisby.post(BASE_URL + '/dataerasure/', {
           headers: { Cookie: 'token=' + jsonLogin.authentication.token },
           body: {
